@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- BRANDBOT: Updated all URLs for Island Drains domain -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://islanddrainsandexcavation.ca/index.html</loc>
+    <lastmod>2025-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://islanddrainsandexcavation.ca/services.html</loc>
+    <lastmod>2025-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://islanddrainsandexcavation.ca/about.html</loc>
+    <lastmod>2025-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://islanddrainsandexcavation.ca/partnerships.html</loc>
+    <lastmod>2025-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://islanddrainsandexcavation.ca/gallery.html</loc>
+    <lastmod>2025-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://islanddrainsandexcavation.ca/careers.html</loc>
+    <lastmod>2025-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://islanddrainsandexcavation.ca/contact.html</loc>
+    <lastmod>2025-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset> 

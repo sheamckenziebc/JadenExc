@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BRANDBOT: Updated all meta tags for Island Drains & Excavation -->
+    <title>Island Drains & Excavation – Professional Drain Services & Excavation | Victoria, BC</title>
+    <meta name="description" content="Professional drain cleaning, excavation and excavation services serving Victoria and Southern Vancouver Island. Licensed and insured.">
+    <meta name="application-name" content="Island Drains">
+    <meta name="apple-mobile-web-app-title" content="Island Drains">
+    <meta name="msapplication-TileColor" content="#0C4A6E">
+    <meta name="theme-color" content="#0C4A6E">
+    <link rel="canonical" href="https://islanddrainsandexcavation.ca/index.html" />
+    <meta property="og:site_name" content="Island Drains & Excavation">
+    <meta property="og:title" content="Island Drains & Excavation – Professional Drain Services & Excavation | Victoria, BC" />
+    <meta property="og:description" content="Professional drain cleaning, excavation and excavation services serving Victoria and Southern Vancouver Island. Licensed and insured." />
+    <meta property="og:url" content="https://islanddrainsandexcavation.ca/index.html" />
+    <meta property="og:image" content="https://islanddrainsandexcavation.ca/images/ide-hero-thumbnail.jpg" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/jpeg" href="images/thumbnail.jpeg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- BRANDBOT: Updated structured data for Island Drains & Excavation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Island Drains & Excavation Ltd.",
+      "alternateName": "Island Drains",
+      "url": "https://islanddrainsandexcavation.ca",
+      "logo": "https://islanddrainsandexcavation.ca/images/ide-logo-full.svg",
+      "description": "Professional drain cleaning, excavation and excavation services serving Victoria and Southern Vancouver Island.",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+1-250-818-5611",
+        "contactType": "customer service"
+      }],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Victoria",
+        "addressRegion": "BC",
+        "addressCountry": "CA"
+      },
+      "areaServed": [
+        "Victoria, BC",
+        "Southern Vancouver Island"
+      ],
+      "serviceType": [
+        "Drain cleaning",
+        "Excavation services",
+        "Drain services",
+        "Residential drainage",
+        "Commercial excavation"
+      ],
+      "priceRange": "$$",
+      "openingHours": "Mo-Fr 08:00-17:00"
+    }
+    </script>
+    <style>
+        /* BRANDBOT: Updated hero background for Island Drains theme */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/herobgfinalide.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(2px);
+            z-index: 1;
+        }
+
+        .hero h1, .hero p {
+            color: white;
+        }
+
+        .services-section, .about-section, .contact-section {
+            background-color: var(--dark-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            padding: 2rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(184, 196, 157, 0.1);
+        }
+
+        .service-card .icon i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            color: var(--light-text);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .service-card p {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card .btn-learn-more {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: auto;
+        }
+
+        .service-card .btn-learn-more:hover {
+            background-color: var(--accent-color);
+            color: var(--darker-bg);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--light-text);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--muted-text);
+        }
+
+        .contact-form button {
+            background-color: var(--accent-color);
+            color: var(--darker-bg);
+        }
+
+        .contact-form button:hover {
+            background-color: var(--dark-accent);
+            color: var(--light-text);
+        }
+
+        .services {
+            padding: 8rem 0 4rem;
+            background-color: var(--dark-bg);
+        }
+
+        .services-subsection {
+            margin-top: 4rem;
+        }
+
+        .subsection-title {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            font-weight: 900;
+        }
+
+        .contact {
+            padding: 8rem 0;
+            background-color: var(--dark-bg);
+        }
+
+        .contact-info {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .info-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--light-text);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-content h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 3;
+            font-weight: 900;
+            font-size: 2.5rem;
+        }
+
+        .hero-content h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: white;
+            margin: 0.5rem auto 1rem;
+        }
+
+        .hero-content p {
+            color: #e2e8f0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                                    <!-- BRANDBOT: Updated logo for Island Drains & Excavation -->
+                <img src="images/idelogocropped.PNG" alt="Island Drains & Excavation Ltd. - Professional drainage and excavation services Victoria BC" class="logo-image">
+                    <span class="logo-text">Island Drains & Excavation Ltd.</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li class="dropdown"> 
+                        <a href="services.html">Services</a> 
+                        <!-- BRANDBOT: Updated service menu for Island Drains & Excavation -->
+                        <ul class="dropdown-menu">
+                            <li><a href="services.html#excavation">Excavation</a></li>
+                            <li><a href="services.html#lift-station">Lift Station Supply & Install</a></li>
+                                                    <li><a href="services.html#perimeter-drains">Perimeter Drains</a></li>
+                        <li><a href="services.html#structure-demolition">Structure Demolition</a></li>
+                        <li><a href="services.html#retaining-walls">Retaining Walls</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <!-- BRANDBOT: Updated hero content for Island Drains & Excavation -->
+            <div class="hero-content">
+                <h1>Professional Drain & Excavation Services</h1>
+                <p>Serving Victoria and Southern Vancouver Island with reliable, professional service</p>
+                <div class="cta-buttons">
+                    <a href="services.html" class="btn btn-primary">Our Services</a>
+                    <a href="#contact" class="btn btn-secondary">Get Free Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <!-- BRANDBOT: Updated services section for Island Drains & Excavation -->
+            <div class="section-header">
+                <h2>Our Professional Services</h2>
+                <p>Expert drain and excavation solutions for Victoria and Southern Vancouver Island</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Excavation</h3>
+                    <p>Professional excavation services for residential and commercial projects throughout Victoria and Southern Vancouver Island.</p>
+                    <a href="services.html#excavation" class="btn-learn-more">View Excavation Services</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Lift Station Supply & Install</h3>
+                    <p>Complete lift station solutions including supply, installation, and maintenance for wastewater management systems.</p>
+                    <a href="services.html#lift-station" class="btn-learn-more">Learn About Lift Stations</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Perimeter Drains</h3>
+                    <p>Expert perimeter drain installation and maintenance to protect your property from water damage and flooding.</p>
+                    <a href="services.html#perimeter-drains" class="btn-learn-more">Perimeter Drain Services</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3>Structure Demolition</h3>
+                    <p>Safe and efficient structure demolition services for residential and commercial properties.</p>
+                    <a href="services.html#structure-demolition" class="btn-learn-more">Demolition Services</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Retaining Walls</h3>
+                    <p>Professional retaining wall construction to stabilize slopes, prevent erosion, and enhance your landscape.</p>
+                    <a href="services.html#retaining-walls" class="btn-learn-more">Retaining Wall Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our team</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <!-- BRANDBOT: Updated contact information for Island Drains & Excavation -->
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Service Area</h3>
+                            <p>Victoria & Southern Vancouver Island</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:2508185611">(250) 818-5611</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:info@islanddrainsandexcavation.ca">info@islanddrainsandexcavation.ca</a></p>
+                        </div>
+                    </div>
+                    <!-- BRANDBOT: Removed social media links per user request -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- BRANDBOT: Updated footer logo for Island Drains & Excavation -->
+                <div class="footer-logo">
+                    <a href="index.html">
+                        <img src="images/idelogo.png" alt="Island Drains & Excavation Ltd. - Victoria BC drainage and excavation company" class="footer-main-logo">
+                    </a>
+                    <!-- BRANDBOT: Removed CCIB partnership logo (not applicable for Island Drains) -->
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- BRANDBOT: Updated footer services for Island Drains & Excavation -->
+                <div class="footer-services">
+                    <h3><a href="services.html">Our Services</a></h3>
+                    <ul>
+                        <li><a href="services.html#excavation">Excavation</a></li>
+                        <li><a href="services.html#lift-station">Lift Station Supply & Install</a></li>
+                        <li><a href="services.html#perimeter-drains">Perimeter Drains</a></li>
+                        <li><a href="services.html#structure-demolition">Structure Demolition</a></li>
+                        <li><a href="services.html#retaining-walls">Retaining Walls</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Victoria & Southern Vancouver Island</p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:2508185611">(250) 818-5611</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@islanddrainsandexcavation.ca">info@islanddrainsandexcavation.ca</a></p>
+                </div>
+            </div>
+            <!-- BRANDBOT: Updated footer copyright for Island Drains & Excavation -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Island Drains & Excavation Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+

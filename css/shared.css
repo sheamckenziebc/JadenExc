@@ -1,0 +1,259 @@
+/* BRANDBOT: Updated color scheme for Island Drains & Excavation */
+/* Global font settings */
+:root {
+    --dark-bg: #f5f7fa; /* Light gray with blue hue */
+    --darker-bg: #e8ecf1; /* Slightly darker light gray with blue hue */
+    --light-text: #2d3748; /* Dark text for light background */
+    --muted-text: #4a5568; /* Medium gray text */
+    --accent-color: #0369A1; /* Updated to Island Drains blue */
+    --secondary-color: #FCD34D; /* Updated to hazard yellow */
+    --dark-accent: #0C4A6E; /* Updated to deep marine blue */
+    --card-bg: #ffffff; /* White cards */
+    --hover-bg: #f8fafc; /* Very light gray hover */
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Base font settings */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--light-text);
+    text-transform: uppercase;
+}
+
+p, span, div, li {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--muted-text);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--light-text);
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--darker-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+    color: var(--muted-text);
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent-color);
+}
+
+/* Create orange underline that appears on hover */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+/* Show underline on hover and active states */
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.hamburger .bar {
+    background-color: var(--light-text);
+}
+
+/* Dropdown Menu Styles */
+.nav-links li {
+    position: relative; /* Needed for absolute positioning of dropdown */
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%; /* Position below the parent li */
+    background-color: var(--darker-bg);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    min-width: 200px; /* Adjust width as needed */
+    z-index: 1000;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none; /* Remove top border as it connects to header */
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-links li:hover > .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown-menu li {
+    margin: 0; /* Override default li margin */
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.7rem 1rem;
+    color: var(--muted-text);
+    font-weight: 500; /* Slightly lighter weight */
+    font-size: 0.85rem; /* Slightly smaller font */
+    text-transform: none; /* Keep case as is */
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.dropdown-menu li a:hover {
+    background-color: var(--hover-bg);
+    color: var(--accent-color);
+}
+/* Remove the underline effect from dropdown items */
+.dropdown-menu li a::after {
+     display: none; 
+}
+
+/* Logo Text */
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* BRANDBOT: Updated logo text color for Island Drains */
+.logo-text {
+    color: #0369A1; /* Updated to Island Drains blue */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-left: 0.75rem;
+    letter-spacing: 1px;
+}
+
+/* Increase specificity for logo text styling to override potential overrides */
+.logo a .logo-text,
+header .logo a .logo-text,
+body header .container .logo a .logo-text {
+    color: #0369A1 !important; /* BRANDBOT: Updated to Island Drains blue */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-left: 0.75rem;
+    letter-spacing: 1px;
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: var(--darker-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-links h3,
+.footer-services h3,
+.footer-contact h3 {
+    color: var(--light-text);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.footer-links a,
+.footer-services a,
+.footer-contact a {
+    color: var(--muted-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-services a:hover,
+.footer-contact a:hover {
+    color: var(--accent-color);
+    padding-left: 5px;
+}
+
+/* This is the crucial fix for the "Our Services" link */
+.footer-services h3 a {
+    color: var(--light-text);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-bottom p {
+    color: var(--muted-text);
+}
+
+/* --- Mobile / Responsive --- */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background-color: var(--darker-bg);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .dropdown-menu {
+        position: static; /* Static positioning in mobile */
+        display: block; /* Always block */
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        min-width: auto;
+        border-radius: 0;
+    }
+    .nav-links li:hover > .dropdown-menu {
+         display: block; /* Keep visible */
+    }
+    .dropdown-menu li a {
+         padding: 0.5rem 1rem 0.5rem 2rem; /* Indent mobile dropdown items */
+         font-size: 0.9rem;
+         text-align: left;
+    }
+     .dropdown-menu li a:hover {
+          background-color: var(--hover-bg); /* Keep hover */
+     }
+     /* Ensure parent "Services" link is clickable in mobile */
+     .nav-links > li > a { 
+          display: block; /* Make sure parent link takes space */
+     }
+} 
