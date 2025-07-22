@@ -1,16 +1,16 @@
-/* 
-   Island Drains & Excavation - Main Stylesheet
-   BRANDBOT: Updated from Loyalty 6 Energy Services branding
-   Author: Cascade AI
-   Date: March 14, 2025
+/*
+Jaden's Excavation & Landscaping - Main Stylesheet
+Professional excavation and landscaping services website
 */
+
+/* BRANDBOT: Updated color scheme for Jaden's Excavation earthy/professional theme */
 
 /* ---------- Base Styles ---------- */
 :root {
-    /* BRANDBOT: Updated color scheme for Island Drains marine/professional theme */
-    --primary-color: #0C4A6E; /* Deep marine blue */
-    --secondary-color: #FCD34D; /* Hazard yellow accent */
-    --accent-color: #0369A1; /* Bright blue */
+    /* BRANDBOT: Updated color scheme for Jaden's Excavation earthy/professional theme */
+    --primary-color: #265D2D; /* Deep forest green */
+    --secondary-color: #F9A825; /* Construction yellow accent */
+    --accent-color: #8BC34A; /* Bright green */
     --dark-color: #1E1E1E; /* Dark gray */
     --light-color: #F9FAFB; /* Light gray */
     --text-color: #333333;
@@ -411,8 +411,8 @@ header .container {
 
 /* ---------- Footer ---------- */
 footer {
-    background-color: var(--dark-color);
-    color: var(--text-light);
+    background-color: var(--darker-bg); /* Light green background */
+    color: var(--light-text); /* Dark text */
     padding: 4rem 0 0;
 }
 
@@ -453,7 +453,7 @@ footer {
 }
 
 .footer-logo h2 {
-    color: var(--text-light);
+    color: var(--light-text); /* Dark text */
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
@@ -471,7 +471,7 @@ footer {
 .footer-links h3,
 .footer-services h3,
 .footer-contact h3 {
-    color: var(--text-light);
+    color: var(--light-text); /* Dark text */
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
     position: relative;
@@ -497,12 +497,12 @@ footer {
 }
 
 .footer-links a {
-    color: var(--muted-text);
+    color: var(--muted-text); /* Medium gray text */
     transition: var(--transition);
 }
 
 .footer-links a:hover {
-    color: var(--secondary-color);
+    color: var(--accent-color); /* Bright green on hover */
     padding-left: 5px;
 }
 

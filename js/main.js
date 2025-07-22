@@ -1,9 +1,8 @@
 /*
- * Island Drains & Excavation - Main JavaScript
- * BRANDBOT: Updated from Loyalty 6 Energy Services
- * Author: Cascade AI
- * Date: March 14, 2025
- */
+* Jaden's Excavation & Landscaping - Main JavaScript
+* Professional excavation and landscaping services website
+* BRANDBOT: Updated from Island Drains & Excavation to Jaden's Excavation & Landscaping
+*/
 
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation Toggle

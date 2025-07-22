@@ -1,15 +1,24 @@
-/* BRANDBOT: Updated color scheme for Island Drains & Excavation */
-/* Global font settings */
+/* BRANDBOT: Updated color scheme for Jaden's Excavation & Landscaping */
 :root {
-    --dark-bg: #f5f7fa; /* Light gray with blue hue */
-    --darker-bg: #e8ecf1; /* Slightly darker light gray with blue hue */
-    --light-text: #2d3748; /* Dark text for light background */
-    --muted-text: #4a5568; /* Medium gray text */
-    --accent-color: #0369A1; /* Updated to Island Drains blue */
-    --secondary-color: #FCD34D; /* Updated to hazard yellow */
-    --dark-accent: #0C4A6E; /* Updated to deep marine blue */
-    --card-bg: #ffffff; /* White cards */
-    --hover-bg: #f8fafc; /* Very light gray hover */
+  --primary-color: #265D2D; /* Updated to Jaden's forest green */
+  --accent-color: #8BC34A; /* Updated to Jaden's bright green */
+  --secondary-color: #F9A825; /* Updated to Jaden's construction yellow */
+  --dark-accent: #265D2D; /* Updated to Jaden's deep forest green */
+  --text-color: #333;
+  --light-text: #2d3748; /* Dark text for light background */
+  --muted-text: #4a5568; /* Medium gray text */
+  --background-color: #fff;
+  --light-background: #f8f9fa;
+  --border-color: #ddd;
+  --success-color: #4CAF50;
+  --warning-color: #FF9800;
+  --error-color: #f44336;
+  
+  /* Light green theme colors for footer */
+  --dark-bg: #f6f6f6; /* Light gray with green hue */
+  --darker-bg: #e8f5e8; /* Slightly darker light gray with green hue */
+  --card-bg: #ffffff; /* White cards */
+  --hover-bg: #f8fafc; /* Very light gray hover */
 }
 
 * {
@@ -142,21 +151,18 @@ header {
     text-decoration: none;
 }
 
-/* BRANDBOT: Updated logo text color for Island Drains */
+/* BRANDBOT: Updated logo text color for Jaden's Excavation */
 .logo-text {
-    color: #0369A1; /* Updated to Island Drains blue */
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-left: 0.75rem;
-    letter-spacing: 1px;
+  font-weight: bold;
+  color: #8BC34A; /* Updated to Jaden's bright green */
+  text-decoration: none;
 }
 
 /* Increase specificity for logo text styling to override potential overrides */
 .logo a .logo-text,
 header .logo a .logo-text,
 body header .container .logo a .logo-text {
-    color: #0369A1 !important; /* BRANDBOT: Updated to Island Drains blue */
+    color: #8BC34A !important; /* BRANDBOT: Updated to Jaden's bright green */
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
@@ -167,14 +173,15 @@ body header .container .logo a .logo-text {
 
 /* --- Footer --- */
 footer {
-    background-color: var(--darker-bg);
+    background-color: var(--darker-bg); /* Light green background */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--light-text); /* Dark text */
 }
 
 .footer-links h3,
 .footer-services h3,
 .footer-contact h3 {
-    color: var(--light-text);
+    color: var(--light-text); /* Dark text */
     font-weight: 600;
     letter-spacing: 1px;
 }
@@ -182,7 +189,7 @@ footer {
 .footer-links a,
 .footer-services a,
 .footer-contact a {
-    color: var(--muted-text);
+    color: var(--muted-text); /* Medium gray text */
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -190,13 +197,13 @@ footer {
 .footer-links a:hover,
 .footer-services a:hover,
 .footer-contact a:hover {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Bright green on hover */
     padding-left: 5px;
 }
 
 /* This is the crucial fix for the "Our Services" link */
 .footer-services h3 a {
-    color: var(--light-text);
+    color: var(--light-text); /* Dark text */
 }
 
 .footer-bottom {
@@ -204,7 +211,7 @@ footer {
 }
 
 .footer-bottom p {
-    color: var(--muted-text);
+    color: var(--muted-text); /* Medium gray text */
 }
 
 /* --- Mobile / Responsive --- */

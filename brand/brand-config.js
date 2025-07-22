@@ -4,48 +4,48 @@
 
 export const BRAND = {
   // Company Identity
-  companyName: "Island Drains & Excavation",
-  shortName: "Island Drains",
-  legalName: "Island Drains & Excavation Ltd.",
-  tagline: "Professional Drain Services & Excavation Solutions",
+  companyName: "Jaden's Excavation & Landscaping",
+  shortName: "Jaden's Excavation",
+  legalName: "Jaden's Excavation & Landscaping Ltd.",
+  tagline: "Professional Excavation & Landscaping Solutions",
   
   // Domain Configuration
-  primaryDomain: "islanddrainsandexcavation.ca",
-  altDomains: ["www.islanddrainsandexcavation.ca"],
+  primaryDomain: "jadensexcavation.ca",
+  altDomains: ["www.jadensexcavation.ca"],
   
   // Contact Information
-  primaryPhoneDisplay: "(250) 818-5611",
-  primaryPhoneDial: "+12508185611",
-  primaryEmail: "info@islanddrainsandexcavation.ca",
+  primaryPhoneDisplay: "(250) 555-0199", // TODO: Update with actual phone number
+  primaryPhoneDial: "+12505550199",
+  primaryEmail: "info@jadensexcavation.ca", // TODO: Update with actual email
   
   // Service Area
-  serviceArea: ["Victoria", "Southern Vancouver Island"],
-  primaryLocation: "Victoria, BC",
+  serviceArea: ["Metro Vancouver", "Greater Vancouver Area"],
+  primaryLocation: "Vancouver, BC",
   
   // Address (TODO: Get actual business address)
   addressLines: [
     "123 Example Rd", // TODO: Replace with actual address
-    "Victoria, BC",
-    "V8X 1A1" // TODO: Replace with actual postal code
+    "Vancouver, BC",
+    "V6X 1A1" // TODO: Replace with actual postal code
   ],
   
-  // Color Scheme - Marine/Professional Theme
+  // Color Scheme - Earthy/Professional Theme
   colours: {
-    primary: "#0C4A6E",        // Deep marine blue
-    secondary: "#FCD34D",      // Hazard yellow accent
-    accent: "#0369A1",         // Bright blue
+    primary: "#265D2D",        // Deep forest green - earthy
+    secondary: "#F9A825",      // Construction yellow accent
+    accent: "#8BC34A",         // Bright green
     neutralDark: "#1E1E1E",    // Dark gray
-    neutralLight: "#F9FAFB",   // Light gray
-    success: "#059669",        // Green for success states
-    warning: "#D97706",        // Orange for warnings
+    neutralLight: "#F6F6F6",   // Light gray
+    success: "#4CAF50",        // Green for success states
+    warning: "#FF9800",        // Orange for warnings
   },
   
   // Logo & Asset Paths
   logoPaths: {
-    full: "/images/ide-logo-full.svg",      // TODO: Replace when new logo ready
-    mark: "/images/ide-mark.svg",           // TODO: Replace when new logo ready
-    favicon: "/images/ide-favicon.png",     // TODO: Replace when new logo ready
-    headerLogo: "/images/ide-header-logo.png" // TODO: Replace when new logo ready
+    full: "/images/jadenlogo.png",      // Updated to new Jaden logo
+    mark: "/images/jadenlogo.png",      // Using same logo for mark
+    favicon: "/images/jadenlogo.png",   // Using same logo for favicon
+    headerLogo: "/images/jadenlogo.png" // Using same logo for header
   },
   
   // Social Media (Currently disabled per user request)
@@ -59,14 +59,14 @@ export const BRAND = {
   // Services Configuration
   services: {
     primary: [
-      "Residential Drain Services",
-      "Commercial Excavation", 
-      "Emergency Drain Cleaning"
+      "Residential Excavation",
+      "Commercial Landscaping", 
+      "Site Preparation"
     ],
     categories: {
       residential: "Residential Services",
       commercial: "Commercial Services", 
-              emergency: "Services"
+      landscaping: "Landscaping Services"
     }
   },
   
@@ -74,20 +74,20 @@ export const BRAND = {
   businessInfo: {
     founded: null, // TODO: Add founding year if known
     yearsInBusiness: null, // TODO: Calculate from founding year
-    serviceRadius: "Greater Victoria Area",
-            emergencyService: false,
+    serviceRadius: "Metro Vancouver Area",
+    emergencyService: false,
     licensed: true, // Assumed for professional service
     insured: true   // Assumed for professional service
   },
   
   // SEO & Meta Configuration  
   seo: {
-    defaultTitle: "Island Drains & Excavation - Professional Drain Services Victoria BC",
-            defaultDescription: "Professional drain cleaning, excavation and excavation services serving Victoria and Southern Vancouver Island. Licensed and insured.",
-            keywords: ["drain cleaning", "excavation", "Victoria BC", "drain service", "residential drains", "commercial excavation"],
+    defaultTitle: "Jaden's Excavation & Landscaping - Professional Excavation Services Metro Vancouver BC",
+    defaultDescription: "Professional excavation and landscaping services serving Metro Vancouver and Greater Vancouver Area. Licensed and insured.",
+    keywords: ["excavation", "landscaping", "Metro Vancouver BC", "excavation service", "residential excavation", "commercial landscaping"],
     locale: "en_CA",
     region: "BC",
-    placename: "Victoria"
+    placename: "Vancouver"
   }
 };
 

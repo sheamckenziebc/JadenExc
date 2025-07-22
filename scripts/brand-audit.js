@@ -1,281 +1,242 @@
 #!/usr/bin/env node
 
-// BRANDBOT: Brand Audit Script
-// Scans entire codebase for remaining old brand tokens
-// Usage: node scripts/brand-audit.js [--tokens custom-tokens.json]
+/**
+ * BRANDBOT: Brand Audit Script
+ * Scans the codebase for any remaining Island Drains references or legacy brand elements
+ * Usage: node scripts/brand-audit.js
+ */
 
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 
-// Default token patterns to search for
-const DEFAULT_TOKENS = [
-  // Company names
-  /loyalty\s*6/gi,
-  /loyalty\s*six/gi,
-  /\bl6\b/gi,
-  /loyalty.*energy.*services/gi,
+// Brand tokens to search for (case-insensitive)
+const BRAND_TOKENS = [
+  // Company names (exact matches)
+  'island drains & excavation',
+  'island drains and excavation',
+  'islanddrainsandexcavation',
   
-  // Domains
-  /loyalty6\.ca/gi,
-  /www\.loyalty6\.ca/gi,
+  // Old contact info
+  '818-5611',
+  '2508185611',
+  '+12508185611',
+  'info@islanddrainsandexcavation.ca',
   
-  // Contact info
-  /250[\s\-\.]?719[\s\-\.]?4573/gi,
-  /\+1[\s\-\.]?250[\s\-\.]?719[\s\-\.]?4573/gi,
-  /info@loyalty6\.ca/gi,
+  // Old domain
+  'islanddrainsandexcavation.ca',
   
-  // Old colors (Loyalty6 brand colors)
-  /#B8C49D/gi,
-  /#556B2F/gi,
-  /#8BA446/gi,
-  /#3A4A1C/gi,
+  // Old colors
+  '#0C4A6E',
+  '#FCD34D', 
+  '#0369A1',
   
-  // Location references
-  /dawson\s*creek/gi,
+  // Old service areas (exact matches)
+  'victoria & southern vancouver island',
+  'southern vancouver island',
   
-  // Industry references that need updating
-  /oil.*gas/gi,
-  /energy.*sector/gi,
-  /pipefitting/gi,
-  /crew.*truck/gi,
-  /hot.*shot/gi,
-  
-  // Social media
-  /linkedin\.com\/company\/loyalty/gi,
-  /facebook\.com.*loyalty/gi,
-  
-  // File references
-  /l6logo/gi,
-  /loyalty.*logo/gi,
-  
-  // Business references
-  /ccab\.com.*loyalty/gi,
-  /first.*nations.*majority/gi
+  // Old services (exact matches)
+  'lift station supply & install',
+  'perimeter drains',
+  'structure demolition'
 ];
 
-// Files and directories to exclude from scanning
-const EXCLUDE_PATTERNS = [
-  /node_modules/,
-  /\.git/,
-  /\.vscode/,
-  /\.idea/,
-  /dist/,
-  /build/,
-  /coverage/,
-  /\.log$/,
-  /brand-audit\.js$/,
-  /brand-config\.js$/,
-  /images\/_OLD/,
-  /\.min\.(js|css)$/
+// Words to exclude from search (legitimate words that might cause false positives)
+const EXCLUDE_WORDS = [
+  'drainage', // legitimate word in landscaping context
+  'drain', // legitimate word in landscaping context
+  'victoria', // legitimate word in other contexts
+  'ide', // legitimate abbreviation
+  'island', // legitimate word
+  'drains' // legitimate word
+];
+
+// Directories to exclude
+const EXCLUDE_DIRS = [
+  '.git',
+  'node_modules',
+  '.idea',
+  '.vscode',
+  'dist',
+  'build'
 ];
 
 // File extensions to scan
-const INCLUDE_EXTENSIONS = [
-  '.html', '.css', '.js', '.json', '.xml', '.txt', '.md',
-  '.yml', '.yaml', '.conf', '.config'
+const SCAN_EXTENSIONS = [
+  '.html',
+  '.css',
+  '.js',
+  '.json',
+  '.md',
+  '.txt',
+  '.xml'
 ];
 
-class BrandAuditor {
-  constructor(tokensFile = null) {
-    this.tokens = DEFAULT_TOKENS;
-    this.results = [];
-    this.processedFiles = 0;
-    this.totalMatches = 0;
-    
-    if (tokensFile && fs.existsSync(tokensFile)) {
-      try {
-        const customTokens = JSON.parse(fs.readFileSync(tokensFile, 'utf8'));
-        this.tokens = customTokens.map(token => new RegExp(token, 'gi'));
-        console.log(`📋 Loaded ${this.tokens.length} custom tokens from ${tokensFile}`);
-      } catch (error) {
-        console.error(`❌ Error loading custom tokens: ${error.message}`);
-        process.exit(1);
-      }
+// Results storage
+let auditResults = [];
+let totalIssues = 0;
+
+/**
+ * Check if a directory should be excluded
+ */
+function shouldExcludeDir(dirName) {
+  return EXCLUDE_DIRS.includes(dirName);
+}
+
+/**
+ * Check if a file should be scanned
+ */
+function shouldScanFile(fileName) {
+  const ext = path.extname(fileName).toLowerCase();
+  return SCAN_EXTENSIONS.includes(ext);
+}
+
+/**
+ * Check if a match is a false positive
+ */
+function isFalsePositive(line, token) {
+  const lowerLine = line.toLowerCase();
+  const lowerToken = token.toLowerCase();
+  
+  // Check if it's just a legitimate word
+  if (EXCLUDE_WORDS.includes(lowerToken)) {
+    // Only flag if it's clearly part of the old brand name
+    if (lowerLine.includes('island drains') || 
+        lowerLine.includes('islanddrainsandexcavation') ||
+        lowerLine.includes('victoria & southern vancouver island')) {
+      return false;
     }
+    return true;
   }
+  
+  return false;
+}
 
-  shouldExcludeFile(filePath) {
-    return EXCLUDE_PATTERNS.some(pattern => pattern.test(filePath));
-  }
+/**
+ * Search for brand tokens in a file
+ */
+function searchFile(filePath) {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split('\n');
+    const issues = [];
 
-  shouldIncludeFile(filePath) {
-    const ext = path.extname(filePath).toLowerCase();
-    return INCLUDE_EXTENSIONS.includes(ext);
-  }
+    lines.forEach((line, lineNumber) => {
+      const lineNum = lineNumber + 1;
+      const lowerLine = line.toLowerCase();
 
-  scanFile(filePath) {
-    try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      const lines = content.split('\n');
-      
-      lines.forEach((line, lineNumber) => {
-        this.tokens.forEach((tokenPattern) => {
-          const matches = line.match(tokenPattern);
-          if (matches) {
-            matches.forEach(match => {
-              this.results.push({
-                file: filePath,
-                line: lineNumber + 1,
-                token: match,
-                context: this.getContext(lines, lineNumber),
-                pattern: tokenPattern.source
-              });
-              this.totalMatches++;
+      BRAND_TOKENS.forEach(token => {
+        if (lowerLine.includes(token.toLowerCase())) {
+          // Check for false positives
+          if (!isFalsePositive(line, token)) {
+            issues.push({
+              line: lineNum,
+              token: token,
+              content: line.trim()
             });
           }
-        });
-      });
-      
-      this.processedFiles++;
-    } catch (error) {
-      console.error(`❌ Error reading ${filePath}: ${error.message}`);
-    }
-  }
-
-  getContext(lines, lineNumber) {
-    const start = Math.max(0, lineNumber - 1);
-    const end = Math.min(lines.length, lineNumber + 2);
-    return lines.slice(start, end).join('\n');
-  }
-
-  scanDirectory(dirPath) {
-    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-    
-    for (const entry of entries) {
-      const fullPath = path.join(dirPath, entry.name);
-      
-      if (this.shouldExcludeFile(fullPath)) {
-        continue;
-      }
-      
-      if (entry.isDirectory()) {
-        this.scanDirectory(fullPath);
-      } else if (entry.isFile() && this.shouldIncludeFile(fullPath)) {
-        this.scanFile(fullPath);
-      }
-    }
-  }
-
-  generateReport() {
-    console.log('\n🔍 BRAND AUDIT REPORT');
-    console.log('='.repeat(50));
-    console.log(`📁 Files processed: ${this.processedFiles}`);
-    console.log(`🎯 Total matches found: ${this.totalMatches}`);
-    console.log(`🔍 Patterns searched: ${this.tokens.length}`);
-    
-    if (this.results.length === 0) {
-      console.log('\n✅ SUCCESS: No old brand tokens found!');
-      return true;
-    }
-    
-    console.log('\n❌ ISSUES FOUND:');
-    console.log('-'.repeat(50));
-    
-    // Group results by file
-    const byFile = this.results.reduce((acc, result) => {
-      if (!acc[result.file]) acc[result.file] = [];
-      acc[result.file].push(result);
-      return acc;
-    }, {});
-    
-    Object.entries(byFile).forEach(([file, matches]) => {
-      console.log(`\n📄 ${file} (${matches.length} matches)`);
-      matches.forEach(match => {
-        console.log(`   Line ${match.line}: "${match.token}" (pattern: ${match.pattern})`);
-        // Show a snippet of context
-        const contextLine = match.context.split('\n')[1] || match.context.split('\n')[0];
-        if (contextLine.trim()) {
-          console.log(`   Context: ${contextLine.trim().substring(0, 80)}...`);
         }
       });
     });
-    
-    console.log('\n📊 SUMMARY BY PATTERN:');
-    console.log('-'.repeat(30));
-    
-    const byPattern = this.results.reduce((acc, result) => {
-      acc[result.pattern] = (acc[result.pattern] || 0) + 1;
-      return acc;
-    }, {});
-    
-    Object.entries(byPattern)
-      .sort(([,a], [,b]) => b - a)
-      .forEach(([pattern, count]) => {
-        console.log(`${count.toString().padStart(3)} matches: ${pattern}`);
+
+    if (issues.length > 0) {
+      auditResults.push({
+        file: filePath,
+        issues: issues
       });
-    
-    return false;
-  }
-
-  async run(startDir = '.') {
-    console.log('🚀 Starting brand audit...');
-    console.log(`📂 Scanning directory: ${path.resolve(startDir)}`);
-    console.log(`🔍 Searching for ${this.tokens.length} token patterns`);
-    
-    const startTime = Date.now();
-    this.scanDirectory(startDir);
-    const endTime = Date.now();
-    
-    console.log(`⏱️  Scan completed in ${endTime - startTime}ms`);
-    
-    const success = this.generateReport();
-    
-    if (!success) {
-      console.log('\n💡 NEXT STEPS:');
-      console.log('1. Review and update the files listed above');
-      console.log('2. Replace old tokens with BRAND imports from brand/brand-config.js');
-      console.log('3. Add BRANDBOT comments where tokens are replaced');
-      console.log('4. Re-run this audit until no tokens remain');
-      
-      process.exit(1);
+      totalIssues += issues.length;
     }
-    
-    console.log('\n🎉 Brand transformation appears complete!');
-    process.exit(0);
+  } catch (error) {
+    console.error(`Error reading file ${filePath}:`, error.message);
   }
 }
 
-// CLI Interface
-function main() {
-  const args = process.argv.slice(2);
-  let tokensFile = null;
-  
-  // Parse command line arguments
-  for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--tokens' && i + 1 < args.length) {
-      tokensFile = args[i + 1];
-      i++; // Skip next argument
-    } else if (args[i] === '--help' || args[i] === '-h') {
-      console.log(`
-🔍 Brand Audit Tool
+/**
+ * Recursively scan directory
+ */
+function scanDirectory(dirPath) {
+  try {
+    const items = fs.readdirSync(dirPath);
 
-Usage: node scripts/brand-audit.js [options]
+    items.forEach(item => {
+      const fullPath = path.join(dirPath, item);
+      const stat = fs.statSync(fullPath);
 
-Options:
-  --tokens FILE     Use custom token patterns from JSON file
-  --help           Show this help message
-
-Examples:
-  node scripts/brand-audit.js
-  node scripts/brand-audit.js --tokens custom-tokens.json
-
-The audit will scan all files (excluding node_modules, .git, etc.) 
-and report any remaining references to the old brand.
-      `);
-      process.exit(0);
-    }
+      if (stat.isDirectory()) {
+        if (!shouldExcludeDir(item)) {
+          scanDirectory(fullPath);
+        }
+      } else if (stat.isFile() && shouldScanFile(item)) {
+        searchFile(fullPath);
+      }
+    });
+  } catch (error) {
+    console.error(`Error scanning directory ${dirPath}:`, error.message);
   }
-  
-  const auditor = new BrandAuditor(tokensFile);
-  auditor.run().catch(error => {
-    console.error('❌ Audit failed:', error.message);
-    process.exit(1);
+}
+
+/**
+ * Print audit results
+ */
+function printResults() {
+  console.log('\n🎨 BRANDBOT: Brand Audit Results\n');
+  console.log('=' .repeat(60));
+
+  if (auditResults.length === 0) {
+    console.log('✅ No brand issues found! The transformation is complete.');
+    console.log('🎉 All Island Drains references have been successfully updated to Jaden\'s Excavation & Landscaping.');
+    return true;
+  }
+
+  console.log(`❌ Found ${totalIssues} brand issues across ${auditResults.length} files:\n`);
+
+  auditResults.forEach(result => {
+    console.log(`📁 ${result.file}`);
+    result.issues.forEach(issue => {
+      console.log(`   Line ${issue.line}: "${issue.token}"`);
+      console.log(`   Content: ${issue.content.substring(0, 80)}${issue.content.length > 80 ? '...' : ''}`);
+    });
+    console.log('');
   });
+
+  console.log('=' .repeat(60));
+  console.log('🔧 To fix these issues:');
+  console.log('   1. Update the identified files with correct Jaden\'s Excavation branding');
+  console.log('   2. Replace old contact information with new details');
+  console.log('   3. Update service areas to Metro Vancouver');
+  console.log('   4. Replace old color codes with new brand colors');
+  console.log('   5. Run this audit again to verify fixes\n');
+
+  return false;
 }
 
+/**
+ * Main audit function
+ */
+function runAudit() {
+  console.log('🔍 BRANDBOT: Starting brand audit...');
+  console.log(`📂 Scanning directory: ${process.cwd()}`);
+  console.log(`🎯 Looking for ${BRAND_TOKENS.length} brand tokens...\n`);
+
+  const startTime = Date.now();
+  scanDirectory('.');
+  const endTime = Date.now();
+
+  console.log(`⏱️  Audit completed in ${endTime - startTime}ms`);
+
+  const isClean = printResults();
+  
+  // Exit with appropriate code
+  process.exit(isClean ? 0 : 1);
+}
+
+// Run the audit if this script is executed directly
 if (require.main === module) {
-  main();
+  runAudit();
 }
 
-module.exports = { BrandAuditor }; 
+module.exports = {
+  runAudit,
+  BRAND_TOKENS,
+  scanDirectory,
+  searchFile
+}; 
